@@ -42,7 +42,8 @@ const HomePage = () => {
         setNotFound(true);
         setResults(null);
         setInputError(false);
-        throw new Error("Word not found");
+        setErrorMessage("Word not found");
+        return;
       }
       const data: DictionaryAPIResponse[] = await response.json();
       setResults(data[0]);
@@ -51,6 +52,7 @@ const HomePage = () => {
       setErrorMessage("");
     } catch (error) {
       console.error(error);
+      setErrorMessage("An error occurred. Please try again.");
     }
   };
 
@@ -189,7 +191,7 @@ const HomePage = () => {
         </div>
         {inputError && (
           <p className="text-red-500 font-bold text-xl sm:text-2xl lg:text-3xl">
-            Whoops, can't be empty
+            {errorMessage}
           </p>
         )}
         {notFound && <NotFound />}
@@ -237,6 +239,11 @@ const HomePage = () => {
               </a>
             </p>
           </>
+        )}
+        {errorMessage && !inputError && !notFound && !results && (
+          <p className="text-red-500 font-bold text-xl sm:text-2xl lg:text-3xl">
+            {errorMessage}
+          </p>
         )}
       </div>
     </div>
