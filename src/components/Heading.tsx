@@ -26,14 +26,18 @@ const Heading = ({ word, phonetic, audio }) => {
         <span className="block font-normal text-purple-500">{phonetic}</span>
       </div>
       {audio && (
-        <button onClick={playAudio}>
+        <button
+          onClick={playAudio}
+          className="flex items-center justify-center w-16 h-16   transition-all"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="60"
+            height="60"
             viewBox="0 0 75 75"
+            className="fill-current bg-[#8E9E9E9]  rounded-full text-[#A445ED]  hover:bg-[#A445ED] hover:text-white"
           >
-            <g fill="#8F19E8" fillRule="evenodd">
+            <g fill="currentColor" fillRule="evenodd">
               <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
               <path d="M29 27v21l21-10.5z" />
             </g>

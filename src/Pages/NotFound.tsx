@@ -1,6 +1,18 @@
+import { useFont } from "../context/FontContext";
+
 const NotFound = () => {
+  const { selectedFont } = useFont();
+
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center mt-16 px-4 ">
+    <div
+      className={`flex flex-col items-center justify-center h-full text-center mt-16 px-4 ${
+        selectedFont.toLowerCase() === "sans"
+          ? "font-sans"
+          : selectedFont.toLowerCase() === "mono"
+          ? "font-mono"
+          : "font-serif"
+      }`}
+    >
       <span
         role="img"
         aria-label="confused face"

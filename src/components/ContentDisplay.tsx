@@ -1,6 +1,6 @@
 import { useFont } from "../context/FontContext";
 
-const ContentDisplay = ({ partOfSpeech, definitions }) => {
+const ContentDisplay = ({ partOfSpeech, definitions, synonyms }) => {
   const { selectedFont } = useFont();
 
   return (
@@ -34,17 +34,23 @@ const ContentDisplay = ({ partOfSpeech, definitions }) => {
                   <span className="italic">"{definition.example}"</span>
                 </div>
               )}
-              {definition.synonyms.length > 0 && (
-                <div className="flex items-start space-x-4">
-                  <span className="text-gray-500 dark:text-gray-300 text-sm ml-6">
-                    Synonyms:
-                  </span>
-                  <span>{definition.synonyms.join(", ")}</span>
-                </div>
-              )}
             </li>
           ))}
         </ul>
+        {synonyms && synonyms.length > 0 && (
+          <div className="mt-4 flex gap-8">
+            <p className="text-gray-500 dark:text-gray-300">Synonyms</p>
+            <ul className="flex flex-wrap space-x-2">
+              {synonyms.map((synonym, index) => (
+                <li key={index} className="text-[#A445ed] font-bold">
+                  <span className="hover:underline hover:font-bold cursor-pointer">
+                    {synonym}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
