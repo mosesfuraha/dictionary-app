@@ -1,6 +1,12 @@
 import { useFont } from "../context/FontContext";
 
-const Heading = ({ word, phonetic, audio }) => {
+interface HeadingProps {
+  word: string;
+  phonetic: string;
+  audio?: string;
+}
+
+const Heading: React.FC<HeadingProps> = ({ word, phonetic, audio }) => {
   const { selectedFont } = useFont();
 
   const playAudio = () => {
@@ -28,14 +34,14 @@ const Heading = ({ word, phonetic, audio }) => {
       {audio && (
         <button
           onClick={playAudio}
-          className="flex items-center justify-center w-16 h-16   transition-all"
+          className="flex items-center justify-center w-16 h-16 transition-all"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="60"
             height="60"
             viewBox="0 0 75 75"
-            className="fill-current bg-[#8E9E9E9]  rounded-full text-[#A445ED]  hover:bg-[#A445ED] hover:text-white"
+            className="fill-current bg-[#8E9E9E9] rounded-full text-[#A445ED] hover:bg-[#A445ED] hover:text-white"
           >
             <g fill="currentColor" fillRule="evenodd">
               <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />

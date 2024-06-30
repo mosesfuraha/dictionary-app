@@ -1,6 +1,21 @@
 import { useFont } from "../context/FontContext";
 
-const ContentDisplay = ({ partOfSpeech, definitions, synonyms }) => {
+interface Definition {
+  definition: string;
+  example?: string;
+}
+
+interface ContentDisplayProps {
+  partOfSpeech: string;
+  definitions: Definition[];
+  synonyms?: string[];
+}
+
+const ContentDisplay: React.FC<ContentDisplayProps> = ({
+  partOfSpeech,
+  definitions,
+  synonyms,
+}) => {
   const { selectedFont } = useFont();
 
   return (

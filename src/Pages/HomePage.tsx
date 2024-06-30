@@ -3,15 +3,27 @@ import Heading from "../components/Heading";
 import NotFound from "./NotFound";
 import ContentDisplay from "../components/ContentDisplay";
 import ThemeBtn from "../components/ThemeBtn";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
+
+interface DictionaryAPIResponse {
+  word: string;
+  phonetic: string;
+  phonetics: { audio?: string }[];
+  meanings: {
+    partOfSpeech: string;
+    definitions: { definition: string; example?: string }[];
+    synonyms: string[];
+  }[];
+  sourceUrls: string[];
+}
 
 const HomePage = () => {
   const { selectedFont, handleFontChange } = useFont();
-  const [word, setWord] = useState("");
-  const [results, setResults] = useState(null);
-  const [notFound, setNotFound] = useState(false);
-  const [inputError, setInputError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [word, setWord] = useState<string>("");
+  const [results, setResults] = useState<DictionaryAPIResponse | null>(null);
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const [inputError, setInputError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const searchWord = async () => {
     if (word.trim() === "") {
@@ -32,9 +44,8 @@ const HomePage = () => {
         setInputError(false);
         throw new Error("Word not found");
       }
-      const data = await response.json();
+      const data: DictionaryAPIResponse[] = await response.json();
       setResults(data[0]);
-
       setNotFound(false);
       setInputError(false);
       setErrorMessage("");
@@ -43,7 +54,7 @@ const HomePage = () => {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setWord(e.target.value);
     if (inputError && e.target.value.trim() !== "") {
       setInputError(false);

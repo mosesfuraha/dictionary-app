@@ -1,13 +1,20 @@
-import { createContext, useContext, useState } from "react";
+// FontContext.tsx
 
-const FontContext = createContext();
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export const useFont = () => useContext(FontContext);
+interface FontContextProps {
+  selectedFont: string;
+  handleFontChange: (font: string) => void;
+}
 
-export const FontProvider = ({ children }) => {
-  const [selectedFont, setSelectedFont] = useState("Sans");
+const FontContext = createContext<FontContextProps | undefined>(undefined);
 
-  const handleFontChange = (font) => {
+export const FontProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [selectedFont, setSelectedFont] = useState<string>("Sans");
+
+  const handleFontChange = (font: string) => {
     setSelectedFont(font);
   };
 
@@ -16,4 +23,12 @@ export const FontProvider = ({ children }) => {
       {children}
     </FontContext.Provider>
   );
+};
+
+export const useFont = (): FontContextProps => {
+  const context = useContext(FontContext);
+  if (!context) {
+    throw new Error("useFont must be used within a FontProvider");
+  }
+  return context;
 };
