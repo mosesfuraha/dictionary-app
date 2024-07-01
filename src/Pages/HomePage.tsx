@@ -211,7 +211,7 @@ const HomePage = () => {
               />
             ))}
 
-            <p className="mt-4 flex mb-4">
+            <p className="mt-4 flex mb-4 text-sm sm:text-base">
               Source:
               <a
                 href={results.sourceUrls[0]}
