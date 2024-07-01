@@ -10,10 +10,14 @@ The Dictionary App is a sleek and intuitive React-based web application that all
 - **🔤 Font Selection**: Choose between different fonts (Sans, Sans Serif, Mono) for a personalized reading experience.
 - **📱 Responsive Design**: Optimized for both desktop and mobile views for a seamless experience across all devices.
 
+## Deployed Link
+
+You can check out the deployed application [here](https://dictionary-deployed-app.netlify.app/).
+
 ## Screenshots
 
 ### Light Theme
-![Dictionary App Light Theme](./src//assets/images/light-theme.png)
+![Dictionary App Light Theme](./src/assets/images/light-theme.png)
 
 ### Dark Theme
 ![Dictionary App Dark Theme](./src/assets/images/dark-theme.png)
@@ -33,5 +37,9 @@ To run the Dictionary App locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/mosesfuraha/dictionary-app
+   git clone https://github.com/mosesfuraha/dictionary-app.git
    cd dictionary-app
+
+
+
+
